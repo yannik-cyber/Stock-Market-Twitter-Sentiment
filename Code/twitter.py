@@ -20,12 +20,12 @@ def get_tweets(username, number_of_tweets):
     
     return tweets
 
-data = pd.DataFrame(data=get_tweets('IBD_ECarson', 1000), columns=['username', 'id', 'date', 'retweet', 'likes', 'text'])
+data = pd.DataFrame(data=get_tweets('IBD_ECarson', 10000), columns=['username', 'id', 'date', 'retweet', 'likes', 'text'])
 
 #data = data.append(pd.DataFrame(data=get_tweets('StockMKTNewz', 1000), columns=['username', 'id', 'date', 'retweet', 'likes', 'text']))
-data = data.append(pd.DataFrame(data=get_tweets('Benzinga', 1000), columns=['username', 'id', 'date', 'retweet', 'likes', 'text']))
+data = data.append(pd.DataFrame(data=get_tweets('Benzinga', 10000), columns=['username', 'id', 'date', 'retweet', 'likes', 'text']))
 #data = data.append(pd.DataFrame(data=get_tweets('nytimesbusiness', 1000), columns=['username', 'id', 'date', 'retweet', 'likes', 'text']))
-data = data.append(pd.DataFrame(data=get_tweets('IBDinvestors', 1000), columns=['username', 'id', 'date', 'retweet', 'likes', 'text']))
+data = data.append(pd.DataFrame(data=get_tweets('IBDinvestors', 10000), columns=['username', 'id', 'date', 'retweet', 'likes', 'text']))
 
 # needs to be changed on the system
 path_to_safe = '/Users/yannikhubrich/Documents/Studium/3Semester/GitHub/FintechConsulting/'
