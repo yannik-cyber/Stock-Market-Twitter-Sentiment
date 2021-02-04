@@ -18,7 +18,7 @@ tw = pd.DataFrame(pd.read_csv('/Users/yannikhubrich/Documents/Studium/3Semester/
 
 tw = tw.drop(columns=['Unnamed: 0', 'Unnamed: 0.1', 'Unnamed: 0.1.1'])
 
-print(tw)
+#print(tw)
 list_of_dates_to_delete = []
 for i in range(len(tw)):
     date = tw.iloc[i,2]
@@ -37,5 +37,22 @@ for i in range(len(tw)):
 #print(list_of_dates_to_delete)
 #print(len(list_of_dates_to_delete))
 tw = tw.drop(index=list_of_dates_to_delete)
-tw = tw.to_csv('/Users/yannikhubrich/Documents/Studium/3Semester/GitHub/FintechConsulting/twitter_and_stockdata_cleaned_final.csv')
+tw.to_csv('/Users/yannikhubrich/Documents/Studium/3Semester/GitHub/FintechConsulting/twitter_and_stockdata_cleaned_final.csv')
+#print(tw)
+
+#Thrid Step: Aggregate all dates
+
+tw = pd.DataFrame(pd.read_csv('/Users/yannikhubrich/Documents/Studium/3Semester/GitHub/FintechConsulting/twitter_and_stockdata_cleaned_final.csv'))
+tw.drop(columns=['Unnamed: 0'])
+
+tw['date'] = pd.to_datetime(tw['date'])
+tw['date'] = tw['date'].apply(lambda x: x.date())
+
 print(tw)
+
+tw.to_csv('/Users/yannikhubrich/Documents/Studium/3Semester/GitHub/FintechConsulting/twitter_and_stockdata_cleaned_final.csv')
+
+
+
+
+

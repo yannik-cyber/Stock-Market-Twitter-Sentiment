@@ -35,7 +35,7 @@ for i in range(len(tw['Symbol'])):
             growth_one_day = getStocktdata(start=start_date, end=end_date, ticker=symbol)
 
             if growth_one_day != None:
-                growth_one_day_list.append(growth_one_day)
+                growth_one_day_list.append(f'{growth_one_day}')
                 new_symbol_list.append(symbol)
         print(growth_one_day_list)
         print(new_symbol_list)
