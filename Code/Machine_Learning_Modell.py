@@ -1,12 +1,13 @@
 import pandas as pd
 import sklearn as skit
 import matplotlib as plt
+import numpy as np
 
 pd.set_option('display.max_columns', 15)
-pd.set_option('display.max_rows', 5)
+pd.set_option('display.max_rows', 20)
 
 tw = pd.DataFrame(pd.read_csv('/Users/yannikhubrich/Documents/Studium/3Semester/GitHub/FintechConsulting/twitter_and_stockdata_cleaned_final.csv'))
-tw = tw.drop(columns=['Unnamed: 0','username', 'id', 'text', 'Score'])
+tw = tw.drop(columns=['Unnamed: 0','Unnamed: 0.1','username', 'id', 'text', 'Score'])
 
 stocks = pd.DataFrame(pd.read_csv('/Users/yannikhubrich/Documents/Studium/3Semester/GitHub/FintechConsulting/dataaktien_clean_list.csv'))
 stocks = stocks.drop(columns=['Unnamed: 0', 'Full_name'])
@@ -36,10 +37,20 @@ def get_df(ticker):
             df.at[i, 'Symbol'] = ticker
             index = symbol_list.index(ticker)
             growth = growth_list[index]
-            df.at[i, 'Growth_one_day'] = growth
+            df.at[i, 'Growth_one_day'] = float(growth)
         else:
             df.at[i, 'Symbol'] = ''
             df.at[i,'Growth_one_day'] = ''
-    print(df)
+    df = df.drop(df[df.Symbol == ''].index)
+    aggregate_functions = {'retweet': 'sum', 'likes':'sum', 'Symbol':'first', 'Subjectivity': 'mean', 'Polarity': 'mean', 'Growth_one_day': 'first'}
+    df = df.groupby(df['date']).aggregate(aggregate_functions)
+    #print(df)
+    return df
 
-get_df('TSLA')
+df = get_df('TSLA')
+df = df.drop(columns=['Symbol'])
+def histogram_intersection(a, b):
+    v = np.minimum(a, b).sum().round(decimals=1)
+    return v
+
+print(df.corr(method='pearson'))
