@@ -1,0 +1,12 @@
+{
+  "name": "stockrecom",
+  "displayName": "stockrecom",
+  "expo": {
+    "name": "stockrecom",
+    "slug": "stockrecom",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
